@@ -68,41 +68,6 @@ export function FloatingWhatsApp() {
         </span>
       </a>
 
-      {/* Mobile bar */}
-      <a
-        href={waUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="wa-mobile-bar"
-        aria-label="WhatsApp"
-        onClick={() => trackEvent('whatsapp_click', { location: 'mobile-bar' })}
-        style={{
-          display: 'none',
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 199,
-          background: '#25D366',
-          color: '#ffffff',
-          textAlign: 'center',
-          padding: '14px',
-          fontSize: '13px',
-          fontWeight: 600,
-          letterSpacing: '0.08em',
-          textTransform: 'uppercase',
-          textDecoration: 'none',
-        }}
-      >
-        Falar no WhatsApp
-      </a>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .wa-float { bottom: 72px !important; right: 20px !important; }
-          .wa-mobile-bar { display: block !important; }
-        }
-      `}</style>
     </>
   );
 }

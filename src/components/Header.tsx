@@ -29,11 +29,14 @@ export function Header() {
 
   useEffect(() => {
     setMenuOpen(false);
+  }, [location]);
+
+  useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
-  }, [menuOpen, location]);
+  }, [menuOpen]);
 
   return (
     <>
@@ -49,7 +52,7 @@ export function Header() {
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 100,
+          zIndex: 300,
           backdropFilter: scrolled ? 'blur(18px)' : 'none',
           borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
         }}
