@@ -70,7 +70,7 @@ function ResultsSection() {
                     beforeObjectPosition={c.beforeObjectPosition}
                     afterObjectPosition={c.afterObjectPosition}
                     caseSlug={c.slug}
-                    aspectRatio={c.mediaAspect ?? '4 / 3'}
+                    aspectRatio="4 / 3"
                     className="ba-card"
                   />
                   <div className="results-grid-caption">
