@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { LogoLink } from './layout/Logo';
-import { ROUTES } from '../lib/constants';
+import { ROUTES, toRouterTarget } from '../lib/constants';
 import { getWhatsAppUrl } from '../lib/whatsapp';
 import { trackEvent } from '../lib/tracking';
 
@@ -65,7 +65,7 @@ export function Header() {
               const isHash = link.to.includes('#');
               const active = !isHash && location.pathname === link.to;
               return (
-                <Link key={link.to} to={link.to} className="nav-link" data-active={active || undefined}>
+                <Link key={link.to} to={toRouterTarget(link.to)} className="nav-link" data-active={active || undefined}>
                   {link.label}
                 </Link>
               );
@@ -102,7 +102,7 @@ export function Header() {
 
       <div role="dialog" aria-modal="true" aria-hidden={!menuOpen} aria-label="Menu de navegação" className="mobile-menu-overlay" data-open={menuOpen || undefined}>
         {navLinks.map((link, i) => (
-          <Link key={link.to} to={link.to} onClick={() => setMenuOpen(false)} className="mobile-menu-link" style={{ transitionDelay: `${0.05 * i}s` }} data-open={menuOpen || undefined}>
+          <Link key={link.to} to={toRouterTarget(link.to)} onClick={() => setMenuOpen(false)} className="mobile-menu-link" style={{ transitionDelay: `${0.05 * i}s` }} data-open={menuOpen || undefined}>
             {link.label}
           </Link>
         ))}

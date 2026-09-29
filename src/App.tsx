@@ -9,18 +9,42 @@ import { CasoClinico } from './pages/CasoClinico';
 import { Tratamentos } from './pages/Tratamentos';
 import { NotFound } from './pages/NotFound';
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
+function ScrollManager() {
+  const { pathname, hash } = useLocation();
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      return;
+    }
+
+    const id = decodeURIComponent(hash.replace(/^#/, ''));
+    let attempts = 0;
+    let timer = 0;
+
+    const tryScroll = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+      if (attempts < 12) {
+        attempts += 1;
+        timer = window.setTimeout(tryScroll, 50);
+      }
+    };
+
+    tryScroll();
+    return () => window.clearTimeout(timer);
+  }, [pathname, hash]);
+
   return null;
 }
 
 function Layout() {
   return (
     <>
-      <ScrollToTop />
+      <ScrollManager />
       <Header />
       <main id="main-content">
         <Routes>

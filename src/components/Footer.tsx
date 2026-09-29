@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Logo } from './layout/Logo';
-import { ROUTES } from '../lib/constants';
+import { ROUTES, toRouterTarget } from '../lib/constants';
 import { siteConfig } from '../lib/data/site';
 import { getWhatsAppUrl } from '../lib/whatsapp';
 
@@ -31,7 +31,7 @@ export function Footer() {
                 { label: 'Profissional', to: '/#profissional' },
                 { label: 'A Clínica', to: ROUTES.clinic },
               ].map((link) => (
-                <Link key={link.to} to={link.to} className="footer-link">
+                <Link key={link.to} to={toRouterTarget(link.to)} className="footer-link">
                   {link.label}
                 </Link>
               ))}

@@ -7,6 +7,15 @@ export const ROUTES = {
   contact: '/#contato',
 } as const;
 
+export function toRouterTarget(to: string) {
+  const hashAt = to.indexOf('#');
+  if (hashAt === -1) return to;
+  return {
+    pathname: to.slice(0, hashAt) || '/',
+    hash: to.slice(hashAt),
+  };
+}
+
 export const CASE_CATEGORIES = [
   'Todos',
   'Estética',
