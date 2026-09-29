@@ -5,8 +5,8 @@ export const siteConfig = {
   description:
     'Seu sorriso merece mais. Odontologia de precisão com cuidado em cada detalhe.',
   locale: 'pt_BR',
-  whatsappNumber: import.meta.env.VITE_WHATSAPP_NUMBER ?? '5543999999999',
-  whatsappDisplay: import.meta.env.VITE_WHATSAPP_DISPLAY ?? '(43) 9 9999-9999',
+  whatsappNumber: import.meta.env.VITE_WHATSAPP_NUMBER ?? '5543996263909',
+  whatsappDisplay: import.meta.env.VITE_WHATSAPP_DISPLAY ?? '(43) 99626-3909',
   instagram: import.meta.env.VITE_INSTAGRAM_URL ?? '',
   address: {
     line1: import.meta.env.VITE_ADDRESS_LINE1 ?? 'R. Dr. Marins de Camargo',
