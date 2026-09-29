@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 
 interface ClipRevealProps {
@@ -9,13 +9,6 @@ interface ClipRevealProps {
   duration?: number;
 }
 
-const clipOrigin = {
-  up: 'inset(100% 0% 0% 0%)',
-  down: 'inset(0% 0% 100% 0%)',
-  left: 'inset(0% 100% 0% 0%)',
-  right: 'inset(0% 0% 0% 100%)',
-};
-
 export function ClipReveal({
   children,
   className = '',
@@ -23,18 +16,19 @@ export function ClipReveal({
   direction = 'up',
   duration = 1.1,
 }: ClipRevealProps) {
-  const reduceMotion = useReducedMotion();
-
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  const shift = {
+    up: { y: 36, x: 0 },
+    down: { y: -36, x: 0 },
+    left: { y: 0, x: -36 },
+    right: { y: 0, x: 36 },
+  }[direction];
 
   return (
     <motion.div
-      className={`clip-reveal-wrap ${className}`.trim()}
-      initial={{ clipPath: clipOrigin[direction], opacity: 0.6, scale: 1.04 }}
-      whileInView={{ clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '-8% 0px -5% 0px' }}
+      className={className}
+      initial={{ opacity: 0, x: shift.x, y: shift.y }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, amount: 0.2, margin: '0px 0px -48px 0px' }}
       transition={{ duration, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}

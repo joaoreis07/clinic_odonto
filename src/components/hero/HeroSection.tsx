@@ -1,4 +1,4 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Logo } from '../layout/Logo';
 import { CTAButton } from '../ui/CTAButton';
 import { SafeImage } from '../ui/SafeImage';
@@ -14,11 +14,10 @@ const heroLines = [
 ];
 
 export function HeroSection() {
-  const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
-  const photoY = useTransform(scrollY, [0, 600], [0, reduceMotion ? 0 : 60]);
-  const photoScale = useTransform(scrollY, [0, 600], [1, reduceMotion ? 1 : 1.06]);
-  const contentY = useTransform(scrollY, [0, 600], [0, reduceMotion ? 0 : 30]);
+  const photoY = useTransform(scrollY, [0, 600], [0, 60]);
+  const photoScale = useTransform(scrollY, [0, 600], [1, 1.06]);
+  const contentY = useTransform(scrollY, [0, 600], [0, 30]);
   const waUrl = getWhatsAppUrl({ intent: 'evaluation' });
 
   return (
@@ -29,7 +28,7 @@ export function HeroSection() {
       <motion.div className="hero-editorial-photo" style={{ y: photoY, scale: photoScale }}>
         <motion.div
           className="hero-editorial-photo-inner"
-          initial={reduceMotion ? false : { opacity: 0, scale: 1.08 }}
+          initial={{ opacity: 0, scale: 1.08 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -49,7 +48,7 @@ export function HeroSection() {
         <div className="hero-editorial-grid">
           <div className="hero-editorial-copy">
             <motion.div
-              initial={reduceMotion ? false : { opacity: 0, y: -12 }}
+              initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               className="hero-editorial-logo"
@@ -58,7 +57,7 @@ export function HeroSection() {
             </motion.div>
 
             <motion.div
-              initial={reduceMotion ? false : { opacity: 0, x: -16 }}
+              initial={{ opacity: 0, x: -16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.25 }}
               className="hero-eyebrow"
@@ -74,8 +73,8 @@ export function HeroSection() {
                 <motion.span
                   key={line.text}
                   className={line.style === 'italic' ? 'hero-headline-italic' : 'hero-headline-main'}
-                  initial={reduceMotion ? false : { opacity: 0, y: 40, filter: 'blur(10px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.95, delay: 0.4 + i * 0.13, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {line.text}
@@ -85,7 +84,7 @@ export function HeroSection() {
 
             <motion.p
               className="hero-sub hero-sub-short"
-              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, delay: 0.9 }}
             >
@@ -94,7 +93,7 @@ export function HeroSection() {
 
             <motion.div
               className="hero-ctas hero-ctas-single"
-              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.15 }}
             >
@@ -107,7 +106,7 @@ export function HeroSection() {
 
       <motion.div
         className="hero-scroll-hint"
-        initial={reduceMotion ? false : { opacity: 0 }}
+        initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6, duration: 0.8 }}
       >

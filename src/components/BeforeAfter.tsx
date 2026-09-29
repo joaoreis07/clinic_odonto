@@ -38,14 +38,11 @@ export function BeforeAfter({
   const [isDragging, setIsDragging] = useState(false);
   const [hasTracked, setHasTracked] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const reduceMotion =
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const beforePos = beforeObjectPosition ?? objectPosition;
   const afterPos = afterObjectPosition ?? objectPosition;
 
   useEffect(() => {
-    if (reduceMotion) return;
     const timer = setTimeout(() => {
       let frame = 0;
       const hint = () => {
@@ -62,7 +59,7 @@ export function BeforeAfter({
       requestAnimationFrame(hint);
     }, 800);
     return () => clearTimeout(timer);
-  }, [reduceMotion]);
+  }, []);
 
   const updatePosition = useCallback(
     (clientX: number) => {
