@@ -1,6 +1,5 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { Logo } from '../layout/Logo';
-import { Tooth3D, ToothMini } from '../Tooth3D';
 import { CTAButton } from '../ui/CTAButton';
 import { SafeImage } from '../ui/SafeImage';
 import { doctorImages } from '../../lib/data/images';
@@ -102,11 +101,6 @@ export function HeroSection() {
               <CTAButton href={waUrl} label="Agendar avaliação" variant="primary" trackingLabel="hero-primary" />
               <CTAButton href={ROUTES.results} label="Ver resultados" variant="outline" trackingLabel="hero-secondary" />
             </motion.div>
-          </div>
-
-          <div className="hero-editorial-visual" aria-hidden="true">
-            <ToothMini size={48} className="hero-mini-tooth hero-mini-tooth-editorial" />
-            <Tooth3D size={180} animate={!reduceMotion} parallax />
           </div>
         </div>
       </motion.div>
